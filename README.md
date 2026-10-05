@@ -100,6 +100,11 @@ Docker compose (Runs Umami with a PostgreSQL database):
 docker compose up -d
 ```
 
+The container listens on `0.0.0.0:3000` by default, including when a pod runtime
+injects its own name as `HOSTNAME`. Set `HOST` and `PORT` to choose the listen address
+and port. Other `HOSTNAME` overrides are preserved; `HOST` takes precedence and can
+also deliberately select the container's own hostname.
+
 ---
 
 ## 🔄 Getting Updates

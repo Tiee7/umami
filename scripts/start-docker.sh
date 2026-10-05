@@ -13,4 +13,14 @@ export PATH="$PWD/node_modules/.bin:$PATH"
 
 node scripts/check-db.js
 node scripts/update-tracker.js
+
+# Pod runtimes can inject the container's own name as HOSTNAME, which Next's
+# standalone server resolves to the pod IP and excludes loopback. Preserve other
+# HOSTNAME overrides; HOST explicitly selects a bind address, even the pod name.
+if [ -n "${HOST:-}" ]; then
+  export HOSTNAME="$HOST"
+elif [ "${HOSTNAME:-}" = "$(hostname)" ]; then
+  export HOSTNAME=0.0.0.0
+fi
+
 exec node server.js

@@ -52,6 +52,7 @@
     "check:api:client": "tsx scripts/generate-api-client.ts --check",
     "build:packages": "pnpm --filter \"./packages/**\" -r build",
     "test:packages": "pnpm --filter \"./packages/**\" -r test",
+    "test:docker:startup": "node --test tests/docker/start-docker.test.js",
     "postbuild": "node scripts/postbuild.js",
     "pretest": "pnpm generate:db:client",
     "test": "vitest run",
